@@ -1,0 +1,17 @@
+<Project>
+  <!--
+    Fence file for the git-submodules lesson (Appendix E).
+    MSBuild walks UP the directory tree looking for Directory.Build.props and stops at the
+    first one it finds. When this library is checked out as a submodule inside another
+    repository (e.g. libs/shared-lib of git-submodules-lesson), this file stops that walk,
+    so a consuming superproject's Directory.Build.props (TreatWarningsAsErrors, analyzers,
+    versions...) does not leak into this library.
+    ImportDirectoryPackagesProps=false does the same for the superproject's
+    Directory.Packages.props (Central Package Management).
+    Note: global.json cannot be fenced here - the SDK is resolved by walking up from the
+    working directory before any project file is read.
+  -->
+  <PropertyGroup>
+    <ImportDirectoryPackagesProps>false</ImportDirectoryPackagesProps>
+  </PropertyGroup>
+</Project>
